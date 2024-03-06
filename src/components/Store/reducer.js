@@ -34,6 +34,11 @@ const reducer = (state = init, action) => {
         ...state,
         numberOfVictory: [action.payload, ...state.numberOfVictory],
       }
+    case 'SET_CLEAR_NUMBERS_OF_VICTORY':
+      return {
+        ...state,
+        numberOfVictory: [action.payload],
+      }
 
     default:
       return state

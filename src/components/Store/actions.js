@@ -32,3 +32,10 @@ export const setNumbersOfVictory = (numberOfVictory) => {
     type: 'SET_NUMBERS_OF_VICTORY',
   }
 }
+
+export const setClearNumbersOfVictory = (numberOfVictory) => {
+  return {
+    payload: numberOfVictory,
+    type: 'SET_CLEAR_NUMBERS_OF_VICTORY',
+  }
+}

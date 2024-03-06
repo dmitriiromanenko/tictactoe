@@ -1,86 +1,39 @@
 import { useDispatch } from 'react-redux'
-import { setGameInfo, setStepCount, setGameHistory, setPlayer } from '../Store/actions'
+import {
+  setGameInfo,
+  setStepCount,
+  setGameHistory,
+  setPlayer,
+  setClearNumbersOfVictory,
+} from '../Store/actions'
 
 const useCart = () => {
   const dispatch = useDispatch()
 
-  // const setGame=(item)=>{
-  //     dispatch(setGameInfo(item));
-  // }
-
   const addItemToStorage = (item) => {
-    // setGame(item);
     dispatch(setGameInfo(item))
   }
 
-  const changeFieldSizeM = () => {
-    dispatch(
-      setGameInfo([
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-      ]),
-    )
-    dispatch(setStepCount(0))
-    dispatch(setGameHistory([Array(16).fill(null)]))
-    dispatch(setPlayer(true))
-  }
+  const changeFieldSize = (item) => {
+    const length = item ** 2
 
-  const changeFieldSizeL = () => {
-    dispatch(
-      setGameInfo([
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-      ]),
-    )
+    function createArrayOfNulls(length) {
+      return Array.from({ length }, () => null)
+    }
+
+    const arrayOfNulls = createArrayOfNulls(length)
+
+    dispatch(setGameInfo(arrayOfNulls))
     dispatch(setStepCount(0))
-    dispatch(setGameHistory([Array(25).fill(null)]))
+    dispatch(setGameHistory([Array(length).fill(null)]))
     dispatch(setPlayer(true))
   }
 
   const addStepCount = (item) => {
-    // setStep(item);
     dispatch(setStepCount(item))
   }
 
   const addHistory = (item) => {
-    // setGameHistoryCount(item);
     dispatch(setGameHistory(item))
   }
 
@@ -93,6 +46,7 @@ const useCart = () => {
     dispatch(setStepCount(0))
     dispatch(setGameHistory([Array(9).fill(null)]))
     dispatch(setPlayer(true))
+    dispatch(setClearNumbersOfVictory([]))
   }
 
   return {
@@ -100,8 +54,7 @@ const useCart = () => {
     addItemToStorage,
     addPlayer,
     addStepCount,
-    changeFieldSizeL,
-    changeFieldSizeM,
+    changeFieldSize,
     resetGame,
   }
 } // use cart ends

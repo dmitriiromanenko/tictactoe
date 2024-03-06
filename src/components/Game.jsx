@@ -10,20 +10,14 @@ const Game = () => {
   const [isSettings, setIsSettings] = useState(true)
   const dispatch = useDispatch()
 
-  const {
-    addItemToStorage,
-    changeFieldSizeM,
-    changeFieldSizeL,
-    addStepCount,
-    addHistory,
-    addPlayer,
-    resetGame,
-  } = useCart()
+  const { addItemToStorage, addStepCount, addHistory, addPlayer, resetGame, changeFieldSize } =
+    useCart()
 
   const { calculateWinner } = useHook()
   const { step, gameHistory, xIsNext, numberOfVictory } = useSelector((state) => state)
 
-  const history = [Array(boardSize === '3' ? 9 : boardSize === '4' ? 16 : 25).fill(null)]
+  const historySize = { 3: 9, 4: 16, 5: 25 }
+  const history = [Array(historySize[boardSize]).fill(null)]
 
   const xO = xIsNext ? 'X' : 'O'
 
@@ -63,41 +57,39 @@ const Game = () => {
     (value) => {
       setIsSettings(true)
       setBoardSize(value)
-      console.log(value, 'value')
-      if (value === '3') {
-        resetGame()
-        console.log('field size changed')
-      }
-      if (value === '4') {
-        changeFieldSizeM()
-        console.log('field size changed')
-      }
-      if (value === '5') {
-        changeFieldSizeL()
-        console.log('field size changed')
-      }
+      changeFieldSize(Number(value))
     },
-    [boardSize, changeFieldSizeL, changeFieldSizeM, resetGame],
+    [changeFieldSize],
   )
 
-  console.log(numberOfVictory, 'winner')
+  const handleResetGame = useCallback(() => {
+    setIsSettings(true)
+    resetGame()
+    setBoardSize('3')
+  }, [resetGame])
 
-  const counts = {}
-
-  for (const num of numberOfVictory) {
-    counts[num] = counts[num] ? counts[num] + 1 : 1
-  }
+  const counts = numberOfVictory.reduce((acc, num) => {
+    acc[num] = (acc[num] || 0) + 1
+    return acc
+  }, {})
 
   return (
     <>
       <h1>Tic Tac Tao with React-Redux</h1>
+
+      <button onClick={handleResetGame} style={{ cursor: 'pointer' }}>
+        Reset Game
+      </button>
+
       {isSettings ? (
         <label>
           Board Size:
           <select value={boardSize} onChange={(e) => handleSetBoardSize(e.target.value)}>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-            <option value={5}>5</option>
+            {[3, 4, 5].map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))}
           </select>
         </label>
       ) : null}
@@ -107,12 +99,12 @@ const Game = () => {
       <div className="info-wrapper">
         <h3>{winner ? 'Winner: ' + winner : 'Next Player: ' + xO}</h3>
         <button onClick={() => handleSetBoardSize(boardSize)} style={{ cursor: 'pointer' }}>
-          Reset Game
+          New Game
         </button>
       </div>
       <div className="info-wrapper">
-        <h3>O player wins: {counts['O']}</h3>
-        <h3>X player wins: {counts['X']}</h3>
+        <h3>O player wins: {counts['O'] || 0}</h3>
+        <h3>X player wins: {counts['X'] || 0}</h3>
       </div>
     </>
   )
