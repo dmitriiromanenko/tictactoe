@@ -1,0 +1,59 @@
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+}
+
+.board {
+  border: 1rem solid #ff652f;
+  background: #ff652f;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.board-m {
+  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  gap: 0.8rem;
+  border: 0.8rem solid #ff652f;
+}
+
+.board-l {
+  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+  gap: 0.68rem;
+  border: 0.68rem solid #ff652f;
+}
+
+.squares {
+  background: #272727;
+  border: none;
+  font-size: 5rem;
+  height: 8.75rem;
+  width: 8.75rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.square-m {
+  height: 6.5625rem;
+  font-size: 3.75rem;
+  width: 6.5625rem;
+}
+
+.square-l {
+  height: 5.25rem;
+  font-size: 3rem;
+  width: 5.25rem;
+}
+
+.X {
+  color: red;
+}
+.O {
+  color: green;
+}
+
+.info-wrapper {
+  display: flex;
+  justify-content: space-between;
+}

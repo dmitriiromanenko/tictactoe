@@ -1,0 +1,8 @@
+.control-button {
+  all: unset;
+  padding: 1rem;
+  cursor: pointer;
+  color: #ffe400;
+  text-decoration: none;
+  margin-bottom: auto;
+}

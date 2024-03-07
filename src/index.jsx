@@ -2,9 +2,9 @@ import React from 'react'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import ReactDom from 'react-dom'
 import './index.css'
-import Game from './components/Game'
-import Settings from './components/Settings'
-import { StateProvider } from './components/Store/store'
+import Game from './components/screens/game/Game'
+import Settings from './components/screens/settings/Settings'
+import { StateProvider } from './components/store/store'
 
 ReactDom.render(
   <StateProvider>

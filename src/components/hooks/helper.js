@@ -21,7 +21,6 @@ const useHook = () => {
       break
   }
 
-  console.log(lines, 'lines')
   const calculateWinner = () => {
     let squares = gameHistory[step]
 

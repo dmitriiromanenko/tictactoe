@@ -10,7 +10,7 @@ import reducer from './reducer'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['game', 'step', 'gameHistory', 'xIsNext'],
+  whitelist: ['game', 'step', 'gameHistory', 'xIsNext', 'numberOfVictory'],
 }
 const persistedReducer = persistReducer(persistConfig, reducer)
 

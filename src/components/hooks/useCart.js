@@ -5,7 +5,7 @@ import {
   setGameHistory,
   setPlayer,
   setClearNumbersOfVictory,
-} from '../Store/actions'
+} from '../store/actions'
 
 const useCart = () => {
   const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const useCart = () => {
   const changeFieldSize = (item) => {
     const length = item ** 2
 
-    function createArrayOfNulls(length) {
+    const createArrayOfNulls = (length) => {
       return Array.from({ length }, () => null)
     }
 
