@@ -20,6 +20,7 @@ const Board = ({ onClick }) => {
   return (
     <div className={`board board-${size}`}>
       {game.map((square, i) => (
+        // eslint-disable-next-line
         <Square key={i} size={size} value={square} onClick={onClick(i)} />
       ))}
     </div>
