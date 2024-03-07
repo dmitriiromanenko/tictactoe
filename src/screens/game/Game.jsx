@@ -1,5 +1,5 @@
 import React from 'react'
-import Board from '../../Board'
+import Board from '../../components/Board'
 import Button from '../../modules/Button'
 import useGame from './useGame'
 import Link from '../../modules/Link'
