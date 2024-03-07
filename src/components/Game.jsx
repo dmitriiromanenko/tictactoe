@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Board from './Board'
 import useCart from './hooks/useCart'
 import useHook from './hooks/helper'
@@ -81,18 +82,7 @@ const Game = () => {
         Reset Game
       </button>
 
-      {isSettings ? (
-        <label>
-          Board Size:
-          <select value={boardSize} onChange={(e) => handleSetBoardSize(e.target.value)}>
-            {[3, 4, 5].map((size) => (
-              <option key={size} value={size}>
-                {size}
-              </option>
-            ))}
-          </select>
-        </label>
-      ) : null}
+      {isSettings ? <Link to="settings">Settings</Link> : null}
 
       <Board onClick={handleClick} />
 
